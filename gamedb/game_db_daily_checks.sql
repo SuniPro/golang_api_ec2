@@ -31,7 +31,7 @@ CREATE TABLE `daily_checks` (
   `last_check_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_daily_checks_deleted_at` (`deleted_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `daily_checks` (
 
 LOCK TABLES `daily_checks` WRITE;
 /*!40000 ALTER TABLE `daily_checks` DISABLE KEYS */;
-INSERT INTO `daily_checks` VALUES (1,'2022-11-04 16:22:16','2022-11-04 16:22:16',NULL,'qhfk','2022-11-04 16:22:16');
+INSERT INTO `daily_checks` VALUES (1,'2022-11-04 16:22:16','2022-11-04 16:22:16',NULL,'qhfk','2022-11-04 16:22:16'),(2,'2022-11-05 10:43:21','2022-11-05 10:43:21',NULL,'영리한 수니','2022-11-05 10:43:21');
 /*!40000 ALTER TABLE `daily_checks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-04 18:38:20
+-- Dump completed on 2022-11-05 15:23:55

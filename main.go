@@ -15,6 +15,7 @@ func main() {
 
 	public := r.Group("/api")
 
+	public.POST("/", controllers.Print)
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)
 	protected := r.Group("/api/admin")

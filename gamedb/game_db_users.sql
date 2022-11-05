@@ -32,9 +32,8 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`),
   KEY `idx_users_deleted_at` (`deleted_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'2022-11-04 13:03:22','2022-11-04 13:03:22',NULL,'thtnsgus21@gmail.com','suni','$2a$10$GPkvhrid.VrtVN5G3o61zOOqlA6cRIdbYXzYHpc6dn.Ahip3HGaki'),(2,'2022-11-04 13:15:47','2022-11-04 13:15:47',NULL,'thtnsgus21@naver.com','suni1','$2a$10$Kvy91RvHRZs1pEcSCNVAe.D.8McQGweNYQ9o.A2l53K07.ynqmq82'),(6,'2022-11-04 16:16:52','2022-11-04 16:16:52',NULL,'thtnsgus21@daum.com','qhfk','$2a$10$RD0HqRqMusBRRWCPgPMD.eZ0SJ/rPrX7R.WMPBTaNB6QxRsPLYFk2');
+INSERT INTO `users` VALUES (1,'2022-11-05 10:42:09','2022-11-05 10:42:09',NULL,'thtnsgus21@naverasdf.com','똑똑한 수니','$2a$10$IM.D60wiai0KYsxIOybKdunjjzlnfSGIxWmpi/4JKvBH2MtxDhtU.'),(2,'2022-11-05 10:42:25','2022-11-05 10:42:25',NULL,'thtnsgus21@gmail.com','영리한 수니','$2a$10$PqqWTFAcfira6J.NKzL18.s8naJ/KPZa4esWNdZsgWolUg4lXA25K');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-04 18:38:20
+-- Dump completed on 2022-11-05 15:23:55
