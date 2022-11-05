@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:700|IBM+Plex+Sans:500&display=swap');
+
+@font-face {
+  font-family: 'nexon_reqular';
+  src: url('font/NEXON Lv1 Gothic_TTF/NEXONLv1GothicRegular.ttf');
+}
+
+@font-face {
+  font-family: 'nexon_Light';
+  src: url('font/NEXON Lv1 Gothic_TTF/NEXONLv1GothicLight.ttf');
+}
+
+@font-face {
+  font-family: 'nexon_Bold';
+  src: url('font/NEXON Lv1 Gothic_TTF/NEXONLv1GothicBold.ttf');
+}
+
+
+@media all and (min-width: 1024px){
+  html{
+    font-size: 100%
+  }
+}
+
+@media all and (max-width: 1024px) {
+  html{
+    font-size: 85%;
+  }
+}
+@media all and (max-width: 768px) {
+  html {
+    font-size: 70%;
+  }
+}
+@media all and (max-width: 500px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media all and (max-width: 400px) {
+  html {
+    font-size: 45%;
+  }
+}
+body {
+  margin: 5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
