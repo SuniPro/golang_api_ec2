@@ -38,6 +38,7 @@ func Checker(c *gin.Context) {
 	lastDate := lastCheckDate.LastCheckDate
 	if err != nil {
 		_, err = d.SaveCheck()
+		c.JSON(http.StatusOK, gin.H{"message": "출석했습니다 !"})
 	} else {
 		if models.DateEqual(lastDate, s) == false {
 			fmt.Println(models.DateEqual(lastDate, s))

@@ -17,7 +17,7 @@ func CountingCheck(c *gin.Context) {
 
 	u, err := models.GetUserByID(user_id)
 
-	d := u.Username
+	d := u.Email
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"errorget": err.Error()})
@@ -26,7 +26,7 @@ func CountingCheck(c *gin.Context) {
 
 	var checkDb []models.DailyCheck
 	var checkCount int
-	models.DB.Where("username LiKE ?", d).Find(&checkDb).Count(&checkCount)
+	models.DB.Where("email LiKE ?", d).Find(&checkDb).Count(&checkCount)
 	//DB.Last(&dailyCheckData).Select("username, last_check_date").Where("username LIKE ?", name)
 
 	c.JSON(http.StatusOK, gin.H{"message": checkCount})

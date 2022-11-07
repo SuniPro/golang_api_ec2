@@ -22,7 +22,7 @@ func main() {
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/user", controllers.CurrentUser)
 	protected.POST("/daily_check", controllers.Checker)
-	protected.GET("/compensation", controllers.CompensationController)
+	protected.POST("/compensation", controllers.CompensationController)
 	protected.GET("/counting_check", controllers.CountingCheck)
 
 	r.Run(":8080")

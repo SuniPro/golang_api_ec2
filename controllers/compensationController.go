@@ -30,7 +30,7 @@ func CompensationController(c *gin.Context) {
 
 	var checkDb []models.DailyCheck
 	var checkCount int
-	models.DB.Where("email LiKE ?", d).Find(&checkDb).Count(&checkCount)
+	models.DB.Where("email LiKE ?", d.Email).Find(&checkDb).Count(&checkCount)
 
 	var firstReward string = "Adventure_pack1"
 	var secondReward string = "unique_weapon"
