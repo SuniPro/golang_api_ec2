@@ -6,6 +6,7 @@ import (
 
 type Compensation struct {
 	gorm.Model
+	Email        string `gorm:"size:70;not null" json:"email"`
 	Username     string `gorm:"size:70;not null" json:"username"`
 	Compensation string `gorm:"size:70;not null" json:"username"`
 }

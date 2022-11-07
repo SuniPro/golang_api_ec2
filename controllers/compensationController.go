@@ -11,16 +11,18 @@ func CompensationController(c *gin.Context) {
 	user_id, err := token.ExtractTokenID(c)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"errortoken": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"errorToken": err.Error()})
 		return
 	}
 
 	u, err := models.GetUserByID(user_id)
 
-	d := u.Username
+	d := models.DailyCheck{}
+	d.Email = u.Email
+	d.Username = u.Username
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"errorget": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -28,7 +30,7 @@ func CompensationController(c *gin.Context) {
 
 	var checkDb []models.DailyCheck
 	var checkCount int
-	models.DB.Where("username LiKE ?", d).Find(&checkDb).Count(&checkCount)
+	models.DB.Where("email LiKE ?", d).Find(&checkDb).Count(&checkCount)
 
 	var firstReward string = "Adventure_pack1"
 	var secondReward string = "unique_weapon"
@@ -39,6 +41,7 @@ func CompensationController(c *gin.Context) {
 
 	switch {
 	case checkCount == 7:
+		compensation.Email = u.Email
 		compensation.Username = u.Username
 		compensation.Compensation = firstReward
 		_, err = compensation.SaveCompensation()

@@ -28,26 +28,33 @@ func Checker(c *gin.Context) {
 	d := models.DailyCheck{}
 	s := time.Now()
 
+	d.Email = u.Email
 	d.Username = u.Username
 	d.LastCheckDate = s
 
-	lastCheckDate, err := models.DateCheck(d.Username)
+	lastCheckDate, err := models.DateCheck(d.Email)
 
+	fmt.Println(err)
 	lastDate := lastCheckDate.LastCheckDate
-
-	if models.DateEqual(lastDate, s) == false {
-		fmt.Print(models.DateEqual(lastDate, s))
+	if err != nil {
 		_, err = d.SaveCheck()
-
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-
-		c.JSON(http.StatusOK, gin.H{"message": "출석했습니다 !"})
-
 	} else {
-		c.JSON(http.StatusOK, gin.H{"message": "이미 출석하였습니다"})
+		if models.DateEqual(lastDate, s) == false {
+			fmt.Println(models.DateEqual(lastDate, s))
+			fmt.Println(lastDate, s)
+			_, err = d.SaveCheck()
+
+			if err != nil {
+				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+				return
+			}
+
+			c.JSON(http.StatusOK, gin.H{"message": "출석했습니다 !"})
+
+		} else {
+			c.JSON(http.StatusOK, gin.H{"message": "이미 출석하였습니다"})
+			fmt.Println(lastDate, s)
+		}
 	}
 
 	//c.JSON(http.StatusOK, gin.H{"message": "success", "data": d})

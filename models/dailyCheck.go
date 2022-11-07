@@ -8,6 +8,7 @@ import (
 
 type DailyCheck struct {
 	gorm.Model
+	Email         string    `gorm:"size:70;not null" json:"email"`
 	Username      string    `gorm:"size:70;not null" json:"username"`
 	LastCheckDate time.Time `json:"last_check_date"`
 }
@@ -31,9 +32,12 @@ func GetUsernameByID(uid uint) (User, error) {
 
 	var u User
 
-	if err := DB.Select("username").First(&u, uid).Error; err != nil {
-		return u, errors.New("Username not found!")
+	if err := DB.First(&u, uid).Error; err != nil {
+		return u, errors.New("User not found!")
 	}
+	//if err := DB.Select("email").First(&u, uid).Error; err != nil {
+	//	return u, errors.New("Username not found!")
+	//}
 
 	return u, nil
 }
@@ -44,12 +48,24 @@ func DateEqual(lastDate, s time.Time) bool {
 	return y1 == y2 && m1 == m2 && d1 == d2
 }
 
-func DateCheck(name string) (DailyCheck, error) {
+func DateCheck(email string) (DailyCheck, error) {
 
 	var dailyCheckData DailyCheck
 
-	if err := DB.Last(&dailyCheckData).Select("username, last_check_date").Where("username LIKE ?", name).Error; err != nil {
-		return dailyCheckData, errors.New("Username not found!")
+	if err := DB.Last(&dailyCheckData).Select("email, username, last_check_date").Where("email LIKE ?", email).Error;
+		err != nil {
+		return dailyCheckData, errors.New("email not found!")
+	}
+	//Model(&dailyCheckData).Select("username, last_check_date").Where("username LIKE ?", name)
+	return dailyCheckData, nil
+}
+
+func DBValueCheck(email string) (DailyCheck, error) {
+
+	var dailyCheckData DailyCheck
+
+	if err := DB.Last(&dailyCheckData).Select("email, username, last_check_date").Where("email LIKE ?", email).Error; err != nil {
+		return dailyCheckData, errors.New("email not found!")
 	}
 	//Model(&dailyCheckData).Select("username, last_check_date").Where("username LIKE ?", name)
 	return dailyCheckData, nil
