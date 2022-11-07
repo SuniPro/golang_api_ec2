@@ -12,18 +12,34 @@ func main() {
 	models.ConnectDataBase()
 
 	r := gin.Default()
+	r.Use(CORSMiddleware())
 
 	public := r.Group("/api")
 
-	public.POST("/", controllers.Print)
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)
 	protected := r.Group("/api/admin")
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/user", controllers.CurrentUser)
-	protected.GET("/daily_check", controllers.Checker)
+	protected.POST("/daily_check", controllers.Checker)
 	protected.GET("/compensation", controllers.CompensationController)
 	protected.GET("/counting_check", controllers.CountingCheck)
 
 	r.Run(":8080")
+}
+
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Header("Access-Control-Allow-Headers", "Content-Type, Authorization, Origin")
+		c.Header("Access-Control-Allow-Credentials", "true")
+		c.Header("Access-Control-Allow-Origin", "*")
+		c.Header("Access-Control-Allow-Methods", "GET, DELETE, POST, PUT")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
 }

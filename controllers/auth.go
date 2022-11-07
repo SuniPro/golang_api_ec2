@@ -87,6 +87,6 @@ func CurrentUser(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": u.Username})
+	c.JSON(http.StatusOK, gin.H{"message": u.Email, "data": u.Username})
 
 }
